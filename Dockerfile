@@ -21,8 +21,12 @@ ENV STREAMLIT_THEME_PRIMARY_COLOR="#C1C6C8"
 
 COPY src/ src/
 
-EXPOSE 8501
+EXPOSE 80
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-ENTRYPOINT ["streamlit", "run", "src/main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT [ "streamlit", "run", "src/main.py", \
+             "--server.port", "80", \
+             "--server.enableCORS", "true", \
+             "--browser.serverAddress", "0.0.0.0", \
+             "--browser.serverPort", "443"]

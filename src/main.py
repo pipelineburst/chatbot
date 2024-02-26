@@ -9,6 +9,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 
+## when testing locally using env
 os.environ["AWS_PROFILE"] = "sso-bedrock"
 
 # creating the bedrock client
@@ -42,10 +43,10 @@ def test_bot(language, text):
     response = chain({"language": language, "text": text})
     return response
 
-# testing when running $ python main.py
+## when testing locally with $ python main.py
 # print(test_bot("Engish", "Hello, how long is the longest river in the world?"))
 
-# defining the strealit app
+# defining the standard strealit app
 def main():
     st.title("Q&A with Anthropic.claude-v2")
     language = st.selectbox("Select a language", ["English", "German", "French", "Spanish"])
@@ -54,6 +55,7 @@ def main():
         response = test_bot(language, text)
         st.write(response["text"])
 
+# defining an alternative strealit conversational app
 def main2():
     st.title("ChatBot with Anthropic.claude-v2")
     language = st.selectbox("Select a language", ["English", "German", "French", "Spanish"])
@@ -66,5 +68,5 @@ def main2():
 if __name__ == "__main__":
     main()
 
-## run as 
+## when testing locally 
 ## python -m streamlit run main.py --theme.primaryColor "#ffffff"
