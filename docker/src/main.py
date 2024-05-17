@@ -10,7 +10,7 @@ from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 
 ## when testing locally using env
-os.environ["AWS_PROFILE"] = "sso-bedrock"
+#os.environ["AWS_PROFILE"] = "sso-bedrock"
 
 # creating the bedrock client
 client = boto3.client('bedrock-runtime', region_name="eu-central-1")
